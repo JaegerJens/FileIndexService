@@ -1,0 +1,7 @@
+﻿0123456789
+abcdefghij
+klmnopqrst
+uvwxyz
+ABCDEFGHIJ
+KLMNOPQRST
+UVWXYZ

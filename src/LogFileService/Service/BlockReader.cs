@@ -8,7 +8,7 @@ namespace LogFileService.Service
 {
     public class BlockReader
     {
-        const int BufferSize = 8*1024;
+        const int BufferSize = 4;
 
         public IObservable<DataBlock> ReadBlocksFromFile(string filename)
         {
