@@ -2,7 +2,6 @@
 using LogFileService.Service;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
-using System;
 
 namespace LogFileService.Controllers
 {
@@ -11,12 +10,11 @@ namespace LogFileService.Controllers
     {
         public async Task<IActionResult> Index()
         {
-            var sep = new LineSeparator();
+            var refine = new DataBlockRefinement();
             var reader = new BlockReader();
             var blockList = reader.ReadBlocksFromFile(@"wwwroot\Data\testdata.txt");
             var data = await blockList
-                .SelectMany(f => f.Data)
-                .SelectMany(sep.Separate)
+                .SelectMany(refine.Refine)
                 .ToList()
                 .Select(t => Json(t));
             return data;
