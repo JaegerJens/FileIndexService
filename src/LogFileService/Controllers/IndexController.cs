@@ -14,12 +14,11 @@ namespace LogFileService.Controllers
             var sep = new LineSeparator();
             var reader = new BlockReader();
             var blockList = reader.ReadBlocksFromFile(@"wwwroot\Data\testdata.txt");
-            var d1 = blockList
-                .SelectMany(f => f.Data);
-            IObservable<string> dl = d1.SelectMany(sep.Separate);
-            var d2 = dl.ToList();
-            var d3 = d2.Select(t => Json(t));
-            var data = await d3;
+            var data = await blockList
+                .SelectMany(f => f.Data)
+                .SelectMany(sep.Separate)
+                .ToList()
+                .Select(t => Json(t));
             return data;
         }
     }
